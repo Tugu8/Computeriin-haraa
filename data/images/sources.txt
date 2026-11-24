@@ -1,0 +1,6 @@
+room.jpg	https://commons.wikimedia.org/wiki/Special:FilePath/Living_room_of_a_typical_rural_house_in_northeast_Brazil.jpg
+street.jpg	https://commons.wikimedia.org/wiki/Special:FilePath/Avenue_Saint-Denis_seen_from_the_parc_du_Bastion-de-la-Reine%2C_Quebec_City.jpg
+corridor.jpg	https://commons.wikimedia.org/wiki/Special:FilePath/Long_corridor_with_someone_sitting_on_the_floor_in_the_distance_at_Marina_Bay_MRT_Station_Singapore.jpg
+ulaanbaatar.jpg	https://commons.wikimedia.org/wiki/Special:FilePath/2024-10-18_Ulaanbaatar%2C_S%C3%BCkhbaatar_Square.jpg
+person.jpg	https://commons.wikimedia.org/wiki/Special:FilePath/Person_skiing_in_Central_Park%2C_NYC.jpg
+road.jpg	https://commons.wikimedia.org/wiki/Special:FilePath/Road_in_Norway.jpg

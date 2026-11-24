@@ -19,11 +19,11 @@ CS322 Компьютерийн хараа — бие даалтын ажил, **
 
 ### Б.Төгөлдөр (B242270047) — Загвар ба inference
 
-- [ ] Colab/локал орчин бэлдэх (`torch`, `timm`, `opencv-python`), `requirements.txt` бичих
-- [ ] `torch.hub`-аар MiDaS загваруудыг ачаалах: `DPT_Large`, `DPT_Hybrid`, `MiDaS_small`
-- [ ] Зураг оруулаад depth map гаргадаг нийтлэг функц бичих (`src/depth.py`: transform → inference → эх хэмжээ рүү interpolate)
-- [ ] Гурван загварын хурдыг (нэг зурагт зарцуулах хугацаа, GPU/CPU) хэмжих
-- [ ] Бусад гишүүдийн кодыг нэгтгэсэн үндсэн notebook (`notebooks/main.ipynb`) хийх
+- [x] Colab/локал орчин бэлдэх (`torch`, `timm`, `opencv-python`), `requirements.txt` бичих
+- [x] `torch.hub`-аар MiDaS загваруудыг ачаалах: `DPT_Large`, `DPT_Hybrid`, `MiDaS_small`
+- [x] Зураг оруулаад depth map гаргадаг нийтлэг функц бичих (`src/depth.py`: transform → inference → эх хэмжээ рүү interpolate)
+- [x] Гурван загварын хурдыг (нэг зурагт зарцуулах хугацаа, GPU/CPU) хэмжих — `results/speed_benchmark.csv`
+- [x] Үндсэн notebook (`notebooks/main.ipynb`) — бусдын хэсгийг дараа нь нэмж нэгтгэнэ
 - [ ] Репо, branch, merge-ийг хариуцах
 
 ### С.Итгэл (B242270031) — Онол ба үнэлгээ
@@ -46,6 +46,36 @@ CS322 Компьютерийн хараа — бие даалтын ажил, **
 
 - [ ] Эцсийн үр дүнг хамтдаа шалгаж, дүгнэлт гаргах
 - [ ] Илтгэлийн слайд бэлдэх (гишүүн бүр өөрийн хэсгийг)
+
+## Ажиллуулах
+
+**Colab:** `notebooks/main.ipynb`-г Colab-д нээгээд (File → Open notebook → GitHub → `Tugu8/Computeriin-haraa`) дарааллаар нь ажиллуулна. Runtime → GPU сонгосон бол илүү хурдан ажиллана.
+
+**Локал:**
+```bash
+pip install -r requirements.txt
+python -m src.run_inference            # data/images доторх бүх зураг × 3 загвар → results/
+```
+
+Бусад гишүүд кодоо ингэж ашиглана:
+```python
+from src.depth import load_model, predict_depth, read_image, depth_to_color
+model, transform, device = load_model("DPT_Hybrid")   # эсвэл DPT_Large, MiDaS_small
+depth = predict_depth(model, transform, read_image("data/images/road.jpg"), device)
+# depth: эх зурагтай ижил H x W хэмжээтэй float32, утга том = ойрхон (relative inverse depth)
+```
+
+## Одоогийн үр дүн (CPU, Intel)
+
+| Загвар | Параметр | Хугацаа / зураг |
+|---|---|---|
+| DPT_Large | 344 сая | ~10–13 с |
+| DPT_Hybrid | 123 сая | ~4.5–5 с |
+| MiDaS_small | 21 сая | ~0.23 с |
+
+![Харьцуулалт](results/comparison_grid.png)
+
+`data/images/` доторх 6 зураг нь pipeline-ыг шалгах зорилготой түр зургууд (Wikimedia Commons, эх сурвалж `data/images/sources.txt`). Итгэл эцсийн туршилтын зургуудыг нэмнэ.
 
 ## Фолдерын бүтэц
 

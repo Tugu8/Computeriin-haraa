@@ -7,3 +7,4 @@ venv/
 *.pth
 weights/
 .DS_Store
+results/depth_npy/
